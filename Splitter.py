@@ -19,14 +19,30 @@ UI.label_image.setPixmap(QPixmap(r"img\image.jpg"))
 
 
 
-def get_max_number_name(path) -> "return max number in name from dirs or files by path":
+#Oculus_Cubemap_Generator_Left_Hand
+#OpenGL_Stereoscopic_Cube_Map
+#Spherical_Stereoscopic
+#Cube_Map_Unity
+#Cube_Map
+#OpenGL_CubeW
+#Unity_Cube_Stereoscopic
+
+def get_max_number_name(path, map_type) -> "return max number in name from dirs or files by path":
     dirs_names = os.listdir(path)
     list_of_numbers = []
+    clear_list_names = []
 
-    for i in dirs_names:
+    for i,n in enumerate(dirs_names):
+        
+        if os.path.isdir(os.path.join(path, n)) and re.findall("{} -[0-9]*".format(map_type), n):
+            clear_list_names.append(n)
+            
+
+    for i in clear_list_names:
         number = re.findall('.*([-_][0-9]+).*', i)
         if number:
             list_of_numbers.append(*number)
+
 
     try:
         max_number = max([int(re.sub('[-_]', '', i)) for i in list_of_numbers])
@@ -48,7 +64,7 @@ def CubeW_Stereoscopic():
     height = image.size[1]
     pix = image.load()
     w, h = image.size
-    dir_name = r'OpenGL_Stereoscopic_Cube_Map -' + get_max_number_name(path)
+    dir_name = r'OpenGL_Stereoscopic_Cube_Map -' + get_max_number_name(path, "OpenGL_Stereoscopic_Cube_Map")
 
     if not os.path.exists(os.path.join(path, dir_name, r"right")):
         os.makedirs(os.path.join(path, dir_name, r'right'))
@@ -85,7 +101,7 @@ def Spherical_Stereoscopic():
     height = image.size[1]
     pix = image.load()
     w, h = image.size
-    dir_name = r'Spherical_Stereoscopic -' + get_max_number_name(path)
+    dir_name = r'Spherical_Stereoscopic -' + get_max_number_name(path, "Spherical_Stereoscopic")
 
     if not os.path.exists(os.path.join(path, dir_name)):
         os.makedirs(os.path.join(path, dir_name))
@@ -105,7 +121,7 @@ def Unity_CubeW():
     height = image.size[1]
     pix = image.load()
     w, h = image.size
-    dir_name = r'Cube_Map_Unity -' + get_max_number_name(path)
+    dir_name = r'Cube_Map_Unity -' + get_max_number_name(path, "Cube_Map_Unity")
 
     if not os.path.exists(os.path.join(path, dir_name)):
         os.makedirs(os.path.join(path, dir_name))
@@ -129,7 +145,7 @@ def CubeW():
     height = image.size[1]
     pix = image.load()
     w, h = image.size
-    dir_name = r'Cube_Map -' + get_max_number_name(path)
+    dir_name = r'Cube_Map -' + get_max_number_name(path, "Cube_Map")
 
     if not os.path.exists(os.path.join(path, dir_name)):
         os.makedirs(os.path.join(path, dir_name))
@@ -154,7 +170,7 @@ def OpenGL_CubeW():
     height = image.size[1]
     pix = image.load()
     w, h = image.size
-    dir_name = r'OpenGL_CubeW -' + get_max_number_name(path)
+    dir_name = r'OpenGL_CubeW -' + get_max_number_name(path, "OpenGL_CubeW")
 
     if not os.path.exists(os.path.join(path, dir_name)):
         os.makedirs(os.path.join(path, dir_name))
@@ -178,7 +194,7 @@ def Unity_Cube_Stereoscopic():
     height = image.size[1]
     pix = image.load()
     w, h = image.size
-    dir_name = r'Unity_Cube_Stereoscopic -' + get_max_number_name(path)
+    dir_name = r'Unity_Cube_Stereoscopic -' + get_max_number_name(path, "Unity_Cube_Stereoscopic")
 
     if not os.path.exists(os.path.join(path, dir_name, r"right")):
         os.makedirs(os.path.join(path, dir_name, r'right'))
@@ -216,7 +232,7 @@ def Unity_Cube_Stereoscopic():
 #     height = image.size[1]
 #     pix = image.load()
 #     w, h = image.size
-#     dir_name = r'Oculus_Cubemap_Generator -' + get_max_number_name(path)
+#     dir_name = r'Oculus_Cubemap_Generator -' + get_max_number_name(path, "Oculus_Cubemap_Generator")
 #
 #     if not os.path.exists(os.path.join(path, dir_name)):
 #         os.makedirs(os.path.join(path, dir_name))
@@ -272,7 +288,7 @@ def Oculus_Cubemap_Generator_Left_Hand():
     height = image.size[1]
     pix = image.load()
     w, h = image.size
-    dir_name = r'Oculus_Cubemap_Generator_Left_Hand -' + get_max_number_name(path)
+    dir_name = r'Oculus_Cubemap_Generator_Left_Hand -' + get_max_number_name(path, "Oculus_Cubemap_Generator_Left_Hand")
 
     if not os.path.exists(os.path.join(path, dir_name)):
         os.makedirs(os.path.join(path, dir_name))
