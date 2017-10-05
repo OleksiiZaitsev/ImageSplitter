@@ -221,7 +221,7 @@ def Unity_Cube_Stereoscopic():
     UI.progressBar.setProperty("value", 100)
     del image
 
-# def Oculus_Cubemap_Generator():
+# def Oculus_Cubemap_Generator_Right_Hand():
 #
 #     UI.progressBar.setProperty("value", 0)
 #     image = Image.open(UI.lineEdit_IMAGE_PATH.text())
